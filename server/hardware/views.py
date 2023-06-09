@@ -14,12 +14,12 @@ import queue
 
 PARKING_PRICE_PER_HOUR = 60000.000
 
-ip_address = "146.190.102.185"
+ip_address = "192.168.104.123"
 
 def create_ticket(request):
     url = 'http://' + ip_address + ':8000/api/tickets/create/'
 
-    urlcam = 'http://192.168.39.20'
+    urlcam = 'http://192.168.104.20'
 
     fileName = 'img_cam1.jpg'
     r = requests.get(f'{urlcam}/capture?_cb={int(round(time.time() * 1000))})', stream = True)
@@ -93,7 +93,7 @@ def update_ticket(request):
 
     license_plate = q.get()
 
-    if (len(license_plate) > 8 or len(license_plate) < 6):
+    if (license_plate == ""):
         return HttpResponse("0")
     else :
 
